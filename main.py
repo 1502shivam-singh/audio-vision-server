@@ -13,11 +13,7 @@ app = FastAPI()
 #
 
 # Set up CORS
-origins = [
-    "http://127.0.0.1:5500",
-    "https://audiovision-bridge.netlify.app/"
-    # Add any other allowed origins here
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
