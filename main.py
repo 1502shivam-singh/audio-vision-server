@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 
 app = FastAPI()
@@ -10,6 +11,21 @@ app = FastAPI()
 #   en -> ja
 #   en -> zh
 #
+
+# Set up CORS
+origins = [
+    "http://127.0.0.1:5500",
+    "https://audiovision-bridge.netlify.app/"
+    # Add any other allowed origins here
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 #loading the tokenizer and the model
 def setLangTarget(fromLang, targetLang):
